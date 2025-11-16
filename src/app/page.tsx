@@ -1,6 +1,9 @@
+'use client';
+
 import Link from 'next/link';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
+import { Trophy, Flame, Target, Users, TrendingUp, Star } from 'lucide-react';
 
 export const dynamic = 'force-dynamic';
 
@@ -45,19 +48,31 @@ export default function HomePage() {
       <section className="container mx-auto px-6 py-16">
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div>
+            <div className="inline-flex items-center space-x-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-medium mb-6 animate-bounce">
+              <Trophy className="w-4 h-4" />
+              <span>Join 10,000+ Writers Earning Points & Badges</span>
+            </div>
             <h1 className="hero-heading text-foreground mb-4">
-              Unlock Your Stories.<br />Effortlessly
+              Write. Compete. Win.<br />Your Writing Journey Gamified
             </h1>
             <p className="text-muted-foreground text-lg mb-8 leading-relaxed">
-              A clean, professional blog platform for writers to create, publish, and share content with beautiful presentation.
-              Start blogging within minutes without technical complexity.
+              Transform your writing into an adventure! Earn XP, unlock achievements, climb the leaderboard, and compete in challenges while building your blog. Make every word count.
             </p>
-            <Button
-              size="lg"
-              className="bg-primary text-primary-foreground hover:bg-primary/90 shadow-button font-medium"
-            >
-              <Link href="/dashboard">Start Writing for Free</Link>
-            </Button>
+            <div className="flex flex-col sm:flex-row gap-4">
+              <Button
+                size="lg"
+                className="bg-primary text-primary-foreground hover:bg-primary/90 shadow-button font-medium"
+              >
+                <Link href="/dashboard">Start Your Quest</Link>
+              </Button>
+              <Button
+                size="lg"
+                variant="outline"
+                className="font-medium"
+              >
+                <Link href="/dashboard/gamification">View Leaderboard</Link>
+              </Button>
+            </div>
           </div>
           <div className="flex justify-center">
             <Image
@@ -67,6 +82,78 @@ export default function HomePage() {
               height={400}
               className="w-full max-w-md"
             />
+          </div>
+        </div>
+      </section>
+
+      {/* Gamification Features Section */}
+      <section className="bg-gradient-to-br from-primary/5 to-background py-16">
+        <div className="container mx-auto px-6">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-foreground mb-3">Level Up Your Writing</h2>
+            <p className="text-muted-foreground text-lg">Turn your creative passion into an exciting journey</p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {/* Feature 1 */}
+            <div className="bg-card p-6 rounded-lg border border-border hover:shadow-md transition group">
+              <div className="w-12 h-12 rounded-lg bg-blue-500/10 flex items-center justify-center mb-4 group-hover:scale-110 transition">
+                <Flame className="w-6 h-6 text-blue-500" />
+              </div>
+              <h3 className="font-semibold text-foreground mb-2">Daily Streaks</h3>
+              <p className="text-sm text-muted-foreground">Build momentum with daily writing goals and maintain your streak for maximum rewards</p>
+            </div>
+
+            {/* Feature 2 */}
+            <div className="bg-card p-6 rounded-lg border border-border hover:shadow-md transition group">
+              <div className="w-12 h-12 rounded-lg bg-purple-500/10 flex items-center justify-center mb-4 group-hover:scale-110 transition">
+                <Trophy className="w-6 h-6 text-purple-500" />
+              </div>
+              <h3 className="font-semibold text-foreground mb-2">Achievements</h3>
+              <p className="text-sm text-muted-foreground">Unlock badges and earn XP as you hit milestones and complete challenges</p>
+            </div>
+
+            {/* Feature 3 */}
+            <div className="bg-card p-6 rounded-lg border border-border hover:shadow-md transition group">
+              <div className="w-12 h-12 rounded-lg bg-green-500/10 flex items-center justify-center mb-4 group-hover:scale-110 transition">
+                <TrendingUp className="w-6 h-6 text-green-500" />
+              </div>
+              <h3 className="font-semibold text-foreground mb-2">Leaderboards</h3>
+              <p className="text-sm text-muted-foreground">Compete with writers worldwide and climb the ranks to become #1</p>
+            </div>
+
+            {/* Feature 4 */}
+            <div className="bg-card p-6 rounded-lg border border-border hover:shadow-md transition group">
+              <div className="w-12 h-12 rounded-lg bg-orange-500/10 flex items-center justify-center mb-4 group-hover:scale-110 transition">
+                <Target className="w-6 h-6 text-orange-500" />
+              </div>
+              <h3 className="font-semibold text-foreground mb-2">Challenges</h3>
+              <p className="text-sm text-muted-foreground">Join weekly and monthly challenges to push your limits and earn exclusive rewards</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Community Stats Section */}
+      <section className="py-16 bg-secondary text-secondary-foreground">
+        <div className="container mx-auto px-6">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+            <div>
+              <div className="text-4xl font-bold text-primary mb-2">10K+</div>
+              <p className="text-sm text-secondary-foreground/80">Active Writers</p>
+            </div>
+            <div>
+              <div className="text-4xl font-bold text-primary mb-2">250K+</div>
+              <p className="text-sm text-secondary-foreground/80">Posts Published</p>
+            </div>
+            <div>
+              <div className="text-4xl font-bold text-primary mb-2">1M+</div>
+              <p className="text-sm text-secondary-foreground/80">XP Earned</p>
+            </div>
+            <div>
+              <div className="text-4xl font-bold text-primary mb-2">500+</div>
+              <p className="text-sm text-secondary-foreground/80">Achievements</p>
+            </div>
           </div>
         </div>
       </section>

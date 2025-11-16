@@ -4,7 +4,10 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { PenSquare, FileText, Eye, MessageSquare, Users, TrendingUp } from 'lucide-react';
+import { PenSquare, FileText, Eye, MessageSquare, Users, TrendingUp, Trophy, Star, Flame, Target } from 'lucide-react';
+import { LevelProgress } from '@/components/gamification/level-progress';
+import { WritingStreak } from '@/components/gamification/writing-streak';
+import { DailyGoals } from '@/components/gamification/daily-goals';
 
 export const dynamic = 'force-dynamic';
 
@@ -89,6 +92,13 @@ export default function DashboardPage() {
               <span className="text-sm font-medium">Drafts</span>
             </Link>
             <Link
+              href="/dashboard/gamification"
+              className="flex items-center space-x-3 px-4 py-2 rounded-md hover:bg-sidebar-accent hover:text-sidebar-accent-foreground transition"
+            >
+              <Trophy className="w-4 h-4" />
+              <span className="text-sm font-medium">Achievements</span>
+            </Link>
+            <Link
               href="/dashboard/stats"
               className="flex items-center space-x-3 px-4 py-2 rounded-md hover:bg-sidebar-accent hover:text-sidebar-accent-foreground transition"
             >
@@ -124,44 +134,73 @@ export default function DashboardPage() {
               <p className="text-muted-foreground">Manage your posts and track performance</p>
             </div>
 
-            {/* Stats Cards */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-              <Card>
-                <CardHeader className="pb-3">
-                  <CardTitle className="text-sm font-medium text-muted-foreground flex items-center justify-between">
-                    Total Views
-                    <Eye className="w-4 h-4" />
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="text-3xl font-bold text-foreground">2,847</div>
-                  <p className="text-xs text-success mt-1">↑ 12% from last month</p>
+            {/* Level Progress */}
+            <div className="mb-6">
+              <LevelProgress
+                level={12}
+                currentXP={3420}
+                xpForNextLevel={5000}
+                totalPoints={5720}
+              />
+            </div>
+
+            {/* Gamification Row */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+              <WritingStreak
+                currentStreak={7}
+                longestStreak={14}
+                weekData={[true, true, false, true, true, true, true]}
+              />
+              <DailyGoals
+                wordsGoal={500}
+                wordsWritten={243}
+                postsGoal={1}
+                postsWritten={0}
+              />
+            </div>
+
+            {/* Quick Stats Banner */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+              <Card className="bg-gradient-to-br from-blue-500/10 to-background border-blue-500/20">
+                <CardContent className="p-4">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <p className="text-sm text-muted-foreground mb-1">Total Views</p>
+                      <p className="text-2xl font-bold text-foreground">2,847</p>
+                      <p className="text-xs text-success mt-1">↑ 12% this month</p>
+                    </div>
+                    <Eye className="w-8 h-8 text-blue-500/50" />
+                  </div>
                 </CardContent>
               </Card>
 
-              <Card>
-                <CardHeader className="pb-3">
-                  <CardTitle className="text-sm font-medium text-muted-foreground flex items-center justify-between">
-                    Total Posts
-                    <FileText className="w-4 h-4" />
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="text-3xl font-bold text-foreground">15</div>
-                  <p className="text-xs text-success mt-1">3 published this month</p>
+              <Card className="bg-gradient-to-br from-purple-500/10 to-background border-purple-500/20">
+                <CardContent className="p-4">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <p className="text-sm text-muted-foreground mb-1">Total Posts</p>
+                      <p className="text-2xl font-bold text-foreground">15</p>
+                      <p className="text-xs text-success mt-1">3 published this month</p>
+                    </div>
+                    <FileText className="w-8 h-8 text-purple-500/50" />
+                  </div>
                 </CardContent>
               </Card>
 
-              <Card>
-                <CardHeader className="pb-3">
-                  <CardTitle className="text-sm font-medium text-muted-foreground flex items-center justify-between">
-                    Followers
-                    <Users className="w-4 h-4" />
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="text-3xl font-bold text-foreground">128</div>
-                  <p className="text-xs text-success mt-1">↑ 8% from last month</p>
+              <Card className="bg-gradient-to-br from-green-500/10 to-background border-green-500/20">
+                <CardContent className="p-4">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <p className="text-sm text-muted-foreground mb-1">Your Rank</p>
+                      <p className="text-2xl font-bold text-foreground">#4</p>
+                      <p className="text-xs text-success mt-1">
+                        <Link href="/dashboard/gamification" className="hover:underline">
+                          View Leaderboard →
+                        </Link>
+                      </p>
+                    </div>
+                    <Trophy className="w-8 h-8 text-green-500/50" />
+                  </div>
                 </CardContent>
               </Card>
             </div>
